@@ -1,0 +1,29 @@
+class Page
+{
+      //void operator=(const Page& a)
+      //{
+      //	m_no=a.m_no;
+      //	return 0;
+      // } 
+      //void operator new(Line)
+	Page(int no,int lines);
+	//other lines
+	int m_no;
+	std::vector<Line *>_lines;
+};
+
+class Line
+{
+	Line(int lineNo);
+	void writeChars(std::string chars);
+	//other lines
+	int m_no;
+	std::string m_chars;
+};
+
+Page::Page(const Page &o):
+	m_no{o.m_no}
+{
+	for(auto l:o._lines)
+		_lines.push_back(new Line{*l});
+}
