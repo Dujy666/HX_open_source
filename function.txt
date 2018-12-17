@@ -1,0 +1,37 @@
+//Author:Du Jianyu
+//date:12.17
+
+Page &Page::operator=(int no,int lines)
+{
+	m_no=no;
+	
+	for(auto l:_lines){
+		delete l;
+	}
+	for(int i=1;i<lines+1;i++)
+	_lines = Line(i);
+}
+
+Page &Page::operator=(const Page &o)
+{
+	m_no=o.m_no;
+	
+	for(auto l:_lines){
+		delete l;
+	}
+	for(auto l:o._lines)
+		_lines.push_back(new Line{*l});
+}
+
+Page &Page::operator=(Page &&o)noexcept
+{
+	m_no=o.m_no;
+	for(auto l:_lines){
+		delete l;
+	}
+	
+	_lines=o._lines; 
+	o._lines.clear();
+	
+	return *this;
+}
